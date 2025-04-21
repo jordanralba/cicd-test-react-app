@@ -35,7 +35,7 @@ jobs:
       # Install Dependencies
       - name: Install Dependencies
         run: npm install
-
+      # Build Project
       - name: Build Project
         # The location to build the app artifact
         run: npm run build
@@ -45,11 +45,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3 # or specific "vX.X.X" version tag for this action
         with:
           path: dist/
-
-      # Deploy to GitHub Pages
-      # - name: Deploy to GitHub Pages
-      #   uses: actions/deploy-pages@v2
-
+          
   # Deploy job
   deploy:
     # Add a dependency to the build job
