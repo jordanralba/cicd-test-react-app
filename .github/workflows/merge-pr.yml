@@ -1,0 +1,12 @@
+on:
+  pull_request:
+    branches: 
+      - main
+jobs:
+  merge-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Merge PR
+        uses: gh-cli/gh-cli-action@main
+        with:
+          args: pr merge --auto --merge "$PR_URL"
