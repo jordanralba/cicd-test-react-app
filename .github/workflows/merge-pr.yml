@@ -1,14 +1,17 @@
+name: Merge any branch to uat
 on:
-  pull_request:
-    branches: 
-      - main
+  push:
+    branches:
+      - '*'
 jobs:
-  merge-pr:
+  merge-branch:
     runs-on: ubuntu-latest
     steps:
-      - name: Merge PR
-        id: merge
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh pr merge --auto --delete-branch --squash "$BRANCH_NAME"
+      - uses: actions/checkout@master
 
+      - name: Merge staging -> uat
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          target_branch: uat
+          github_token: ${{ secrets.GITHUB_TOKEN }}
